@@ -10,12 +10,12 @@ from mysql.connector import errorcode
 import subprocess
 
 
-# In[29]:
+# In[36]:
 
 
 DB_NAME = 'pruebadb'
 PASS = 'jftcenigaa_UD#21'
-USER1 = 'jftachack_cenigaa'
+USER1 = 'jtachack_cenigaa'
 PASW ='TENNIS0360jft#'
 
 
@@ -138,31 +138,17 @@ for table_name in TABLES:
 
 
 QUERYS = {}
-QUERYS['user'] = ("CREATE USER '{}'@'localhost' IDENTIFIED BY {}".format(USER1,PASW))
+QUERYS['user'] = ("CREATE USER '{}'@'localhost' IDENTIFIED BY '{}'".format(USER1,PASW))
 QUERYS['privileges'] = ("GRANT ALL PRIVILEGES ON {} . * TO {}@localhost".format(DB_NAME,USER1))
 
 
 # In[30]:
 
 
-cursor.close()
-cnx.close()
-
-
-# In[28]:
-
-
-cnx = mysql.connector.connect(host = 'localhost', user = USER1, password = PASW)
-cursor = cnx.cursor()
-
-
-# In[35]:
-
-
 for query in QUERYS:
     instruccion = QUERYS[query]
     try:
-        print("ejecutando instrucción {}: ".format(query), end='')
+        print("Creando usuario y privilegios {}: ".format(query), end='')
         cursor.execute(instruccion)
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
@@ -171,4 +157,24 @@ for query in QUERYS:
 
 cursor.close()
 cnx.close()
+
+
+# In[28]:
+
+
+print("Probando conexión:",end = '')
+try:
+    cnx = mysql.connector.connect(host = 'localhost', user = USER1, password = PASW)
+    cursor = cnx.cursor()
+except mysql.connector.Error as err:
+    print(err.msg)
+else:
+    print("OK")
+   
+
+
+# In[35]:
+
+
+
 
