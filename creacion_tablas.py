@@ -10,12 +10,13 @@ from mysql.connector import errorcode
 import subprocess
 
 
-# In[9]:
+# In[29]:
 
 
 DB_NAME = 'pruebadb'
-RUTA_DHIME = '/home/tachack/Documents/Entrega3/dhime_table.sql'
-PASS = 'tennis0360JFT#'
+PASS = 'jftcenigaa_UD#21'
+USER1 = 'jftachack_cenigaa'
+PASW ='TENNIS0360jft#'
 
 
 # In[16]:
@@ -81,7 +82,7 @@ TABLES["dato_agroclimatico"] = (
 # In[17]:
 
 
-cnx = mysql.connector.connect(host = 'localhost', user = 'cenigaao_jftachack', password = PASS)
+cnx = mysql.connector.connect(host = 'localhost', user = 'root', password = PASS)
 cursor = cnx.cursor()
 
 
@@ -133,56 +134,34 @@ cursor.close()
 cnx.close()
 
 
-# In[4]:
-
-
-
-
-
-# In[14]:
-
-
-
-
-
-# In[5]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[24]:
-
-
-
-
-
-# In[25]:
-
-
-
-
-
-# In[26]:
-
-
-
-
-
-# In[31]:
-
-
-
-
-
 # In[30]:
 
 
+QUERYS = {}
+QUERYS['user'] = ("CREATE USER '{}'@'localhost' IDENTIFIED BY {}".format(USER1,PASW))
+QUERYS['privileges'] = ("GRANT ALL PRIVILEGES ON {} . * TO {}@localhost".format(DB_NAME,USER1))
 
+
+# In[28]:
+
+
+cnx = mysql.connector.connect(host = 'localhost', user = USER1, password = PASW)
+cursor = cnx.cursor()
+
+
+# In[35]:
+
+
+for query in QUERYS:
+    instruccion = QUERYS[query]
+    try:
+        print("ejecutando instrucción {}: ".format(query), end='')
+        cursor.execute(instruccion)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    else:
+        print("OK")
+
+cursor.close()
+cnx.close()
 
