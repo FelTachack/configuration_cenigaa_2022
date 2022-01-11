@@ -130,16 +130,23 @@ for table_name in TABLES:
     else:
         print("OK")
 
-cursor.close()
-cnx.close()
+
+        
 
 
-# In[30]:
+# In[ ]:
 
 
 QUERYS = {}
 QUERYS['user'] = ("CREATE USER '{}'@'localhost' IDENTIFIED BY {}".format(USER1,PASW))
 QUERYS['privileges'] = ("GRANT ALL PRIVILEGES ON {} . * TO {}@localhost".format(DB_NAME,USER1))
+
+
+# In[30]:
+
+
+cursor.close()
+cnx.close()
 
 
 # In[28]:
