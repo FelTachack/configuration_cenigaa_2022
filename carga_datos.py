@@ -19,8 +19,8 @@ import re
 # In[31]:
 
 
-USER = 'cenigaao_jftachack'
-PASS = 'tennis0360JFT#'
+USER = 'jtachack_cenigaa'
+PASS = 'TENNIS0360jft#'
 DB = 'dbcenigaa'
 TABLES = ['calificacion','dato_agroclimatico','datos','estacion_agroclimatica','metodos_obtencion','variable_agroclimatica']
 COLUMNS_TABLES = {}
@@ -33,7 +33,7 @@ DIRECTION = {}
 # In[ ]:
 
 
-subprocess.call([importacion.sh])
+subprocess.call(['importacion.sh'])
 subprocess.run(["python3","creacion_tablas.py"], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 
 
