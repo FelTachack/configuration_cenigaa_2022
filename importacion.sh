@@ -1,2 +1,2 @@
 #! /bin/bach
-mysql -u jtachack_cenigaa -ptennis0360JFT pruebadb < /home/archivos_datos/dhime_table.sql
+mysql -u root -pjftcenigaa_UD#21 pruebadb < /home/archivos_datos/dhime_table.sql
