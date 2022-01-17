@@ -9,10 +9,6 @@ from mysql.connector import errorcode
 import subprocess
 import re
 
-
-# In[24]:
-
-
 USER = 'jftachack'
 PASS = 'tennis0360JFT#'
 DB = 'descargas_dhime'
@@ -23,14 +19,8 @@ DATOS = {}
 CONF = {}
 
 
-# In[25]:
-
-
 for element in TABLES:
     QUERY['{}'.format(element)] = ("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '{}' AND TABLE_NAME = '{}'".format(DB,element))
-
-
-# In[26]:
 
 
 CONF['Creacion'] = ("ALTER TABLE datos ADD fecha_instalacion_dt DATETIME")
@@ -40,14 +30,8 @@ CONF['Depuracion'] = ("ALTER TABLE datos "
                      "DROP FechaInstalacion, RENAME COLUMN fecha_instalacion_dt TO FechaInstalacion")
 
 
-# In[27]:
-
-
 cnx = mysql.connector.connect(host = 'localhost', user= USER, password = PASS, database = DB)
 cursor = cnx.cursor()
-
-
-# In[28]:
 
 
 try:
@@ -60,11 +44,7 @@ except mysql.connector.Error as err:
 else:
     print("OK")
 
-
-# In[42]:
-
-
-
+    
 for element in CONF:
     descripcion = CONF[element]
     try:
@@ -77,9 +57,6 @@ for element in CONF:
         print("OK")
 
 
-# In[29]:
-
-
 for query in QUERY:
     query_description = QUERY[query]
     print(query_description)
@@ -90,10 +67,6 @@ for query in QUERY:
         print(err)
 
 
-# In[30]:
-
-
-
 for table in COLUMNS_TABLES:
     list_one = list(COLUMNS_TABLES[table])
     list_one = list(map(lambda x: str(x),list_one))
@@ -101,9 +74,6 @@ for table in COLUMNS_TABLES:
         list_one[counter] = re.sub("\(|\'|\'|\'|\,|\)","",element)
     
     COLUMNS_TABLES[table] = list_one
-
-
-# In[51]:
 
 
 def creacion_query(tabla_origen,tabla_destino,agrupador,columnas_origen,columnas_destino):
@@ -146,37 +116,11 @@ queyz = creation_direction(tbl_dest_datagro,col_orig_datagro,col_dest_datagro,gr
 
 
 
-
-# In[50]:
-
-
 def creation_direction(tbl_dest,col_orig,col_dest,gr):
     tabla_origen = 'datos'
     DIRECTION ['{}'.format(tbl_dest)] = (tabla_origen,tbl_dest,col_orig,col_dest,gr)
     
 
-
-# In[54]:
-
-
-COLUMNS_TABLES[ 'dato_agroclimatico']
-
-
-# 
-
-# In[55]:
-
-
-TABLES
-
-
-# In[44]:
-
-
-DIRECTION
-
-
-# In[36]:
 
 
 DATOS['{}'.format(tabla_destino)] = (creacion_query(tabla_origen,tabla_destino, agrupador,columnas_origen,columnas_destino))
