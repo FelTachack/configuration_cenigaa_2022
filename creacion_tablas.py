@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[1]:
 
 
 from __future__ import print_function
 import mysql.connector
 from mysql.connector import errorcode
 import subprocess
+import re
 
 
 # In[36]:
@@ -19,7 +20,7 @@ USER1 = 'jtachack_cenigaa'
 PASW ='TENNIS0360jft#'
 
 
-# In[16]:
+# In[3]:
 
 
 TABLES = {}
@@ -148,7 +149,7 @@ QUERYS['privileges'] = ("GRANT ALL PRIVILEGES ON {} . * TO {}@localhost".format(
 for query in QUERYS:
     instruccion = QUERYS[query]
     try:
-        print("Creando usuario y privilegios {}: ".format(query), end='')
+        print("Ejecutando {}: ".format(query), end='')
         cursor.execute(instruccion)
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
@@ -173,7 +174,7 @@ else:
    
 
 
-# In[35]:
+# In[5]:
 
 
 
