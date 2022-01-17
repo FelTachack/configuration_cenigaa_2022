@@ -33,8 +33,8 @@ DIRECTION = {}
 # In[ ]:
 
 
-subprocess.call(["sh",'./importacion.sh'])
 subprocess.run(["python3","creacion_tablas.py"], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+subprocess.call(["sh",'./importacion.sh'])
 
 
 # In[32]:
