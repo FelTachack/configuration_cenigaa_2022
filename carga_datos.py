@@ -21,7 +21,7 @@ import re
 
 USER = 'jtachack_cenigaa'
 PASS = 'TENNIS0360jft#'
-DB = 'dbcenigaa'
+DB = 'pruebadb'
 TABLES = ['calificacion','dato_agroclimatico','datos','estacion_agroclimatica','metodos_obtencion','variable_agroclimatica']
 COLUMNS_TABLES = {}
 QUERY = {}

@@ -40,7 +40,7 @@ TABLES['estacion_agroclimatica'] = (
 
 TABLES["variable_agroclimatica"] = (
     "CREATE TABLE variable_agroclimatica("
-    "idvariable INT NOT NULL primary key,"
+    "idvariable VARCHAR(100) NOT NULL primary key,"
     "identificador VARCHAR(40),"
     "parametro VARCHAR(20),"
     "idstation INT NOT NULL,"
@@ -67,7 +67,7 @@ TABLES["metodos_obtencion"] = (
 
 TABLES["dato_agroclimatico"] = (
     "CREATE TABLE dato_agroclimatico("
-    "idvariable INT NOT NULL,"
+    "idvariable VARCHAR(100) NOT NULL,"
     "valor_numerico FLOAT,"
     "aprobacion INT NOT NULL,"
     "metodo_obtencion INT,"
